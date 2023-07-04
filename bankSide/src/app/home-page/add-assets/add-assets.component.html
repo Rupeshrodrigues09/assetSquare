@@ -1,0 +1,217 @@
+<app-homepage-navbar></app-homepage-navbar>
+<form [formGroup]="addAssets" (ngSubmit)="onSubmit()">
+    <!-- Asset type -->
+    <div class="container-fluid first-dropdowwn d-flex">
+        <p>Asset Type :</p>
+        <select class="select-assetType" (change)="changeAssettype($event)" formControlName="assetType">
+            <option value="" disabled selected>-Select your option-</option>
+            <option *ngFor="let asset of Assets">{{asset}}</option>
+        </select>
+    </div>
+    <div 
+        *ngIf="addAssets.controls['assetType'].invalid && (addAssets.controls['assetType'].dirty|| addAssets.controls['assetType'].touched) ">
+        <p class="text-danger"> Please enter Asset Type</p>
+    </div>
+
+    <hr>
+    <!-- Asset dropdowns -->
+    <div class="container-fluid first-dropdowwn" formGroupName="assetsDetails" >
+        <p>Select Assets Details :</p>
+        <div class="row asset-detail">
+            <div class="col-lg col-md-4 col-sm-6">
+                <select formControlName="assetDetailone">
+                    <option value="" disabled selected>-Select your option-</option>
+                    <option *ngFor="let detailone of assetDetailone">{{detailone}}</option>
+                </select>
+                <div *ngIf=" addAssets.get('assetDetailone')?.invalid||addAssets.get('assetDetailone')?.dirty">
+                    <p class="text-danger p-0 m-0"> Please enter Asset Type</p>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6 asset-detail-min-width">
+                <select formControlName="assetDetailtwo">
+                    <option value="" disabled selected>-Select your option-</option>
+                    <option *ngFor="let detailtwo of assetDetailtwo">{{detailtwo}}</option>
+                </select>
+                <div *ngIf=" addAssets.get('assetDetailtwo')?.invalid ||addAssets.get('assetDetailtwo')?.dirty">
+                    <p class="text-danger p-0 m-0"> Please enter Asset Type</p>
+                </div>
+            </div>
+
+            <div class="col-lg col-md-4 col-sm-6 second-row asset-detail-min-width">
+                <select formControlName="assetDetailthree">
+                    <option value="" disabled selected>-Select your option-</option>
+                    <option *ngFor="let detailthree of assetDetailthree">{{detailthree}}</option>
+                </select>
+                <div *ngIf="addAssets.get('assetDetailthree')?.invalid||(addAssets.get('assetDetailthree')?.touched||addAssets.get('assetDetailthree')?.dirty)">
+                    <p class="text-danger p-0 m-0"> Please enter Asset Type</p>
+                </div>
+            </div>
+
+            <div class="col-lg col-md-4 col-sm-6 second-row assetDetailFourthSelect">
+                <select formControlName="assetDetailfour">
+                    <option value="" disabled selected>-Select your option-</option>
+                    <option *ngFor="let detailfour of assetDetailfour">{{detailfour}}</option>
+                </select>
+                <div *ngIf=" addAssets.get('assetDetailfour')?.invalid||addAssets.get('assetDetailfour')?.dirty">
+                    <p class="text-danger p-0 m-0"> Please enter Asset Type</p>
+                </div>
+            </div>
+
+            <div class="col-lg col-md-4 col-sm-6 second-row assetDetailFifthSelect">
+                <select formControlName="assetDetailfive">
+                    <option value="" disabled selected>-Select your option-</option>
+                    <option *ngFor="let detailfive of assetDetailfive">{{detailfive}}</option>
+                </select>
+                <div *ngIf=" addAssets.get('assetDetailfive')?.invalid||addAssets.get('assetDetailfive')?.dirty">
+                    <p class="text-danger p-0 m-0"> Please enter Asset Type</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <!-- Asset Documents -->
+    <div class="container-fluid first-dropdowwn" formGroupName="assetDocuments">
+        <p>Upload Documents :</p>
+        <button class="addDoc-Btn" type="button" (click)="addAssetDocs()">Add more files</button>
+        <div class="row doc-upload" >
+            <div class="col-md-4 col-lg-3 d-flex" *ngFor="let assetdoc of assetDocs.controls; let i=index">
+                <input type="file" id="customFile" (change)="onFileSelected($event)" accept="application/pdf" formControlName="documentOne" accept=".pdf,.docx"/>
+                <button type="button" class="deleteDoc-Btn" (click)="removeAssetDocs(i)"><img src="assets/delete.png" alt="delete-inputField"></button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <!-- Asset Images -->
+    <div class="container-fluid first-dropdowwn " formGroupName="assetImages">
+        <p>Upload Documents :</p>
+        <button class="addImg-Btn" type="button" (click)="addAssetImages()">Add more Images</button>
+        <div class="row" >            
+            <div class="col-md-4 col-lg-3" *ngFor="let assetimg of assetimgs.controls; let i =index">
+                <div class="img-container">
+                    <button type="button" class="deleteImg-Btn" (click)="removeAssetImgs(i)"><img src="/assets/Closebutton.png" alt="delete-inputImgField"></button>
+                    <img class="previewScreen" [src]="imageSrcone || 'assets/imageview.png'" alt="your image" />
+                    <!-- <div *ngIf="imageSrcone[1]"><img class="previewScreen" [src]="imageSrcone[1] || 'assets/imageview.png'" alt="your image" /></div> -->
+                    <input type='file' (change)="readURLone($event);" class="ps-1" formControlName="imageOne" accept="image/*"/>
+                </div>
+            </div>
+            <!-- <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrcone || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLone($event);" class="ps-1" formControlName="imageOne" accept="image/*" />
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrctwo || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLtwo($event);" class="ps-1" formControlName="imageTwo" accept="image/*"/>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrcthree || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLthree($event);" class="ps-1" formControlName="imageThree" accept="image/*"/>
+                </div>
+            </div> 
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrcFour || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLFour($event);" class="ps-1" formControlName="imageFour" accept="image/*" />
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrcfive || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLfive($event);" class="ps-1" formControlName="imageFive" accept="image/*"/>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrcsix || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLsix($event);" class="ps-1" formControlName="imageSix" accept="image/*"/>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrcseven || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLseven($event);" class="ps-1" formControlName="imageSeven" accept="image/*"/>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="img-container">
+                    <img [src]="imageSrceight || 'assets/imageview.png'" alt="your image" />
+                    <input type='file' (change)="readURLeight($event);" class="ps-1" formControlName="imageEight" accept="image/*"/>
+                </div>
+            </div>  -->
+        </div>
+    </div>
+
+    <hr>
+    <!-- Asset details -->
+    <div class="container-fluid first-dropdowwn" formGroupName="assetDescription">
+        <p>Description & Pricing :</p>
+
+        <div class="row input-fields">
+            <div class="col-md-6 col-sm text-center">
+                <textarea formControlName="description"></textarea>
+                <div *ngIf="addAssets.get('description')?.hasError('required') && addAssets.get('description')?.dirty || addAssets.get('description')?.touched">
+                    <p class="text-danger p-0 m-0"> Please enter the description </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm">
+                <div class="row input">
+                    <div class="col-4">  <label>Loan Lended</label></div>
+                    <div class="col-8">
+                        <input formControlName="loanLended" type="number" id="hidearrows" placeholder="Enter only numeric values">
+                        <div *ngIf="addAssets.get('loanLended')?.hasError('required') && (addAssets.get('loanLended')?.dirty ||addAssets.get('loanLended')?.touched)">
+                            <p class="text-danger p-0 m-0">Please enter Amount </p>
+                        </div>
+                        <div *ngIf="addAssets.get('loanLended')?.hasError('pattern') && (addAssets.get('loanLended')?.dirty || addAssets.get('loanLended')?.touched)">
+                            <p class="text-danger p-0 m-0">Please enter proper amount</p>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="row input">
+                    <div class="col-4">  <label>Loan recovered</label></div>
+                    <div class="col-8"> 
+                        <input formControlName="loanRecovered" type="number" id="hidearrows" placeholder="Enter only numeric values">
+                        <div *ngIf="addAssets.get('loanRecovered')?.hasError('required') && (addAssets.get('loanRecovered')?.dirty ||addAssets.get('loanRecovered')?.touched)">
+                            <p class="text-danger p-0 m-0">Please enter Amount </p>
+                        </div>
+                        <div *ngIf="addAssets.get('loanRecovered')?.hasError('pattern') && (addAssets.get('loanRecovered')?.dirty || addAssets.get('loanRecovered')?.touched)">
+                            <p class="text-danger p-0 m-0">Please enter proper amount</p>
+                        </div>
+    
+                    </div>
+                </div>
+                
+                <div class="row input">
+                    <div class="col-4"> <label>Final Pricing</label></div>
+                    <div class="col-8">
+                        <input formControlName="finalPrice" type="number" id="hidearrows" placeholder="Enter only numeric values">
+                        <div *ngIf="addAssets.get('finalPrice')?.hasError('required') && (addAssets.get('finalPrice')?.dirty ||addAssets.get('finalPrice')?.touched)">
+                            <p class="text-danger p-0 m-0">Please enter Amount</p>
+                           
+                        </div>
+                        <div *ngIf="addAssets.get('finalPrice')?.hasError('pattern') && (addAssets.get('finalPrice')?.dirty || addAssets.get('finalPrice')?.touched)">
+                            <p class="text-danger p-0 m-0">Please enter proper amount</p>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- submitbtn -->
+    <div class="text-center">
+        <button class="submit-btn" type="submit">Submit</button>
+        <p class="login-txt text-success" *ngIf="textShow">Sucessfully Submitted</p>
+        <p class="login-txt text-danger" *ngIf="textShow1">Please enter all the values</p>
+    </div>
+    
+</form>
+
+<app-footer></app-footer>

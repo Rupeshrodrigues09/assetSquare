@@ -1,0 +1,96 @@
+.bg-image{
+    background-image: url('^assets/bankie.png');
+    width: 100%;
+    background-size: contain;
+    height: 100%;
+    }
+    .mask{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+        width: 100%;
+        border-radius: 40px;
+     
+    }
+    
+    input{
+        font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+        border: 2px solid #FF7A7A;
+        border-radius: 10px;
+        margin:10px;
+        padding: 10px;
+        width:auto;
+        
+    }
+    .card{
+        width: 350px;
+    }
+    .button{
+        background-color: #FF7A7A;
+        color:white;
+        border: none;
+        width:150px;
+        font-size: 18px;
+        font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+        padding: 10px;
+        margin:10px;
+    }
+    input:focus{
+        outline: none;
+      }
+      
+    
+    .signin{
+        text-decoration: none;
+        font-weight: 500;
+        font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+        color:#9408D6
+    }
+    p{
+        font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+    }
+    @media only screen and (min-width:300px) and (max-width: 991px) {
+       
+        .bg-image{
+           
+            background-size: cover;
+            // height: 100%;
+            }
+    }
+    
+::ng-deep .cdk-overlay-container{
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  width: 100%;
+  z-index: 9;
+  height: 100%;
+        position: absolute;
+        top:0;
+        text-align: center;
+        margin: 0 auto;
+        // background-color: #9408D6;
+   
+}
+::ng-deep .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){ 
+    font-size: 16px !important;
+    color: #FF7A7A !important;
+    font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif !important;
+    text-decoration: underline !important;
+}
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface{
+    background-color: #FFFFFF !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__label{
+font-size: 16px !important;
+color: #000 !important;
+font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif !important; 
+}
+::ng-deep .mdc-snackbar .mat-mdc-snack-bar-container .mdc-snackbar--open .my-custom-snackbar {
+width: 100% !important;
+}
+::ng-deep mat-snack-bar-container{
+    width: 100% !important;
+}

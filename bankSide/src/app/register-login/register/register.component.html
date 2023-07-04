@@ -1,0 +1,75 @@
+
+<app-register-login-navbar></app-register-login-navbar>
+<div class="text-center bg-image">
+  <div class="mask">
+    <div class="register-card">
+      <div class="">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Register</h5>
+
+            <form [formGroup]="registerForm" (ngSubmit)="register(this.registerForm.value)">
+              <div>
+                <input id="name" type="text" formControlName="name" placeholder="Name" required/>
+                <div *ngIf="registerForm.controls['name'].hasError('required') && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+                  <p class="text-danger mb-0">Please enter Name</p>
+                </div>
+                <div *ngIf="registerForm.controls['name'].hasError('pattern') && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+                  <p class="text-danger mb-0">Please enter Valid Name</p>
+                </div>
+              </div>
+
+              <div>
+                <input id="email" type="email" formControlName="email" placeholder="Email" required/>
+                <div *ngIf="registerForm.controls['email'].hasError('required') && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">                 
+                  <p class="text-danger mb-0">Please enter Email</p>
+                </div>
+                <div *ngIf="registerForm.controls['email'].hasError('pattern') && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                  <p class="text-danger mb-0">Please enter Valid Email</p>
+                </div>
+              </div>
+
+              <div>
+                <input id="pwd" type="password" formControlName="password" placeholder="Password" required/>
+                <div *ngIf="registerForm.controls['password'].hasError('required') && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                  <p class="text-danger mb-0">Please enter password</p>
+                </div>
+                <div *ngIf="registerForm.controls['password'].hasError('minlength') && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                  <p class="text-danger mb-0">Minimum length is 5</p>
+                </div>
+              </div>
+
+              <div>
+                <input id="cpwd" type="password" formControlName="confirmpassword" placeholder=" Confirm Password" required/>
+                <p class="login-txt text-danger mb-0" *ngIf="passmatch">
+                  password not match
+                </p>
+              </div>
+
+              <div>
+                <!-- (click)="showSnackbarDuration('Net is offline, Trying to reconnect in 5 seconds....','Done')" -->
+                <button class="button" type="submit" mat-raised-button color="primary" >Register</button>
+                <p>
+                  Already have an account?
+                  <a class="signin" routerLink="/login">Login</a>
+                </p>
+              </div>
+              <!-- <p class="login-txt text-success" *ngIf="textShow">
+                Sucessfully Registered
+              </p> -->
+              <p class="login-txt text-danger" *ngIf="textShow1">
+                Oops!.... Not Registered
+              </p>
+              <p class="login-txt text-danger" *ngIf="textShow2">
+                Not Registered
+                <!-- {{ this.errorMessage}} -->
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

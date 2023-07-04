@@ -1,0 +1,46 @@
+<app-register-login-navbar></app-register-login-navbar>
+
+<div class="text-center bg-image">
+  <div class="mask">
+    <div class=" card ">
+  
+      <img src="assets/frgt_pwd.jpeg" class="card-img" alt="image">
+      <div class="card-img-overlay ">
+        <div class="row">
+          <div class="col first-column"></div>
+          <div class="col">
+            <h4 class="card-title">Forgot your Password?</h4>
+            <form [formGroup]="forgotForm" (ngSubmit)="reset()">
+    
+              <div>
+                <input id="Email" type="email" formControlName="Email" placeholder="E-mail Id" required />
+                <div
+                  *ngIf="forgotForm.controls['Email'].hasError('required') && (forgotForm.controls['Email'].dirty || forgotForm.controls['Email'].touched)">
+                  <p class="text-danger mb-0 ">Please enter Email </p>
+                </div>
+    
+                <div
+                  *ngIf="forgotForm.controls['Email'].hasError('pattern') && (forgotForm.controls['Email'].dirty || forgotForm.controls['Email'].touched)">
+                  <p class="text-danger mb-0">Please enter Valid Email</p>
+                </div>
+              </div>
+    
+              <div>
+                <button class="button" type="submit"> Reset Password</button>
+              </div>
+    
+              <div>
+                <button class="btn" type="submit" routerLink="/login">Back to sigin </button>
+              </div>
+    
+            </form>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,106 @@
+.bg-image{
+    background-image: url('^assets/bankie.png');
+    width: 100%;
+    background-size: contain;
+    position: relative;
+    z-index: 99;
+}
+
+.mask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    width: 100%;
+    border-radius: 40px;
+}
+
+input{
+    font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+    border: 2px solid #FF7A7A;
+    border-radius: 10px;
+    margin:10px;
+    padding: 10px;
+    width:auto;      
+}
+
+.card{
+    width: 350px;
+}
+
+.button{
+    background-color: #FF7A7A;
+    color:white;
+    border: none;
+    width:150px;
+    font-size: 18px;
+    font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+    padding: 10px;
+    margin:10px;
+}
+
+.signin{
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+    color:#9408D6
+}
+
+p{
+    font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif;
+}
+
+.fogot-pwd{
+    margin: 10px 0px;
+    cursor: pointer;       
+}
+
+input:focus{
+    outline: none;
+}
+
+@media only screen and (min-width:768px) and (max-width: 991px) {
+    .mask{
+        height: 900px;        
+    }
+    .bg-image{           
+        background-size: cover;
+    }
+}
+    
+::ng-deep .cdk-overlay-container{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index:9;
+          position: absolute;
+          top:0;
+          text-align: center;
+          margin: 0 auto;
+          // background-color: #9408D6;
+     
+  }
+::ng-deep .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){ 
+    font-size: 16px !important;
+    color: #FF7A7A !important;
+    font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif !important;
+    text-decoration: underline !important;
+}
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface{
+    background-color: #FFFFFF !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__label{
+font-size: 16px !important;
+color: #000 !important;
+font-family: 'arial','Poppins',Helvetica,Arial,Lucida,sans-serif !important; 
+}
+::ng-deep .mdc-snackbar .mat-mdc-snack-bar-container .mdc-snackbar--open .my-custom-snackbar {
+width: 100% !important;
+height: 100% !important;
+}
+::ng-deep mat-snack-bar-container{
+    width: 100% !important;
+}
